@@ -1,0 +1,35 @@
+let eventList = [];
+
+document.getElementById("eventForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let name = document.getElementById("eventName").value;
+    let date = document.getElementById("eventDate").value;
+    let description = document.getElementById("eventDescription").value;
+
+    let event = {
+        name: name,
+        date: date,
+        description: description
+    };
+
+    eventList.push(event);
+    displayEvents();
+
+    document.getElementById("eventForm").reset();
+});
+
+function displayEvents() {
+    let list = document.getElementById("event-list");
+    list.innerHTML = "";
+
+    eventList.forEach((event, index) => {
+        list.innerHTML += `
+            <div class="event">
+                <h3>${event.name}</h3>
+                <p><strong>Date:</strong> ${event.date}</p>
+                <p>${event.description}</p>
+            </div>
+        `;
+    });
+}
